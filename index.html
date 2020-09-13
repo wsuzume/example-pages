@@ -34,7 +34,23 @@
         </div>
 
         <div class="uk-navbar-item">
-            <button class="uk-button uk-button-default">SIGNIN</button>
+            <div class="uk-inline">
+                <button class="uk-button uk-button-default" type="button">SIGNIN</button>
+                <div uk-dropdown>
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li class="uk-nav-header"><a href="#">USERNAME</a></li>
+                        <input class="uk-input uk-form-width-small" type="text" placeholder="username">
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-nav-header">SIGN IN WITH</li>
+                        <li>
+                            <div class="uk-grid-medium" uk-grid>
+                                <div><span uk-icon="google"></span></div>
+                                <div><span uk-icon="facebook"></span></div>
+                                <div><span uk-icon="twitter"></span></div>
+                            </div>
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </div>
