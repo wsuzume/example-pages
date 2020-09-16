@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Hello world!</title>
+    <link rel="stylesheet" type="text/css" href="font.css">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+
+    <!-- MathJax -->
+
+    <script>
+        MathJax = {
+            svg: {
+                fontCache: 'global',
+                displayAlign: 'left',
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    
+</head>
+<body>
+<div class="uk-section uk-section-default">
+    <div class="uk-container">
+        <article class="uk-article uk-margin-top">
+            <h1 class="uk-article-title">
+                KaTeX Test
+            </h1>
+
+            <textarea id="editor" style="font-family: NasuM; padding: 1.7em; line-height: 1.7em; letter-spacing: 0.1em;" rows=5 cols=30 autocomplete="off" autocapitalize="none" placeholder="memo"></textarea>
+            <button onclick=render()>Compile</button>
+            <div id="viewer" class="uk-margin-top"></div>
+            <div id="svgview" class="uk-margin-top"></div>
+
+            <script>
+                var editor = document.getElementById("editor");
+                var viewer = document.getElementById("viewer");
+                var svgview = document.getElementById("svgview");
+                
+                function render() {
+                    katex.render(editor.value, viewer, {
+                        throwOnError: false
+                    });
+
+                    MathJax.tex2svgPromise(editor.value)
+                        .then((svg) => {
+                            svgview.appendChild(svg);
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        });
+                }
+            </script>
+            
+        </article>
+    </div>
+</div>
+</body>
+</html>
